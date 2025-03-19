@@ -24,13 +24,11 @@ namespace Api.Services.Implementations
             return Task.FromResult(product);
         }
 
-        public Task<Product> GetProduct(int id)
+        public Task<Product?> GetProduct(int id)
         {
             var product = _products.Values.FirstOrDefault(x => x.Id == id);
-            if (product != null)
-                return Task.FromResult(product);
-            else
-                throw new Exception("Product not found");
+            return Task.FromResult(product);
+
         }
        
         public Task<IEnumerable<Product>> GetAllProducts()
