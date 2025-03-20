@@ -9,6 +9,7 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddSingleton<IProductService, ProductService>();
+builder.Services.AddSingleton<INegotiationService, NegotiationService>();
 
 
 

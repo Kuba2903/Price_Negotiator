@@ -5,8 +5,8 @@ namespace Api.Services.Interfaces
 {
     public interface INegotiationService
     {
-        Task<Negotiation> CreateProposal(PriceProposalDTO proposalDto);
-        Task<Negotiation> RespondToProposal(int negotiationId, bool accept);
+        Negotiation CreateProposal(PriceProposalDTO proposalDto);
+        Negotiation RespondToProposal(int negotiationId, bool accept);
         Task<IEnumerable<Negotiation>> GetPendingNegotiations();
     }
 }
