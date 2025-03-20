@@ -22,9 +22,9 @@ namespace Api.Controllers
         }
 
         [HttpPost("proposals")]
-        public ActionResult<Negotiation> CreateProposal(PriceProposalDTO proposalDto)
+        public async Task<ActionResult<Negotiation>> CreateProposal(PriceProposalDTO proposalDto)
         {
-            ValidationResult result = _validator.Validate(proposalDto);
+            ValidationResult result = await _validator.ValidateAsync(proposalDto);
             if (result.IsValid)
             {
                 var negotiation = _negotiationService.CreateProposal(proposalDto);

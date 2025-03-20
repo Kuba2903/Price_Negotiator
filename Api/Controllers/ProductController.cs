@@ -21,10 +21,10 @@ namespace Api.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Roles = "Employee")]
+        [Authorize(Roles = "Employee")]
         public async Task<ActionResult<Product>> CreateProduct(CreateProductDTO productDto)
         {
-            ValidationResult result = _validator.Validate(productDto);
+            ValidationResult result = await _validator.ValidateAsync(productDto);
             if (result.IsValid)
             {
                 var product = await _productService.AddProduct(productDto);
