@@ -37,14 +37,14 @@ namespace Api.Controllers
         }
 
         [HttpPost("proposals/{id}/respond")]
-        //[Authorize(Roles = "Employee")]
+        [Authorize(Roles = "Employee")]
         public ActionResult<Negotiation> RespondToProposal(int id, bool accept)
         {
             return _negotiationService.RespondToProposal(id, accept);
         }
 
         [HttpGet("pending")]
-        //[Authorize(Roles = "Employee")]
+        [Authorize(Roles = "Employee")]
         public async Task<ActionResult<IEnumerable<Negotiation>>> GetPendingNegotiations()
         {
             return Ok(await _negotiationService.GetPendingNegotiations());
