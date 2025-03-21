@@ -78,6 +78,8 @@ builder.Services.AddSingleton<INegotiationService, NegotiationService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IValidator<CreateProductDTO>,CreateProductDtoValidator>();
 builder.Services.AddScoped<IValidator<PriceProposalDTO>,PriceProposalDtoValidator>();
+builder.Services.AddScoped<IValidator<LoginDto>,LoginDtoValidator>();
+builder.Services.AddScoped<IValidator<RegisterEmployeeDto>,RegisterEmployeeDtoValidator>();
 
 var app = builder.Build();
 
