@@ -22,6 +22,14 @@ namespace Api.Controllers
             this.register_validator = register_validator;
         }
 
+
+        /// <summary>
+        /// Authenticates an employee and returns JWT token
+        /// </summary>
+        /// <param name="loginDto">Login credentials</param>
+        /// <returns>Authentication response with JWT token</returns>
+        /// <response code="200">Returns the authentication response with token</response>
+        /// <response code="400">If the credentials are invalid</response>
         [HttpPost("login")]
         public ActionResult<AuthResponseDto> Login([FromBody] LoginDto loginDto)
         {
@@ -37,8 +45,18 @@ namespace Api.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Registers a new employee (requires Employee role)
+        /// </summary>
+        /// <param name="registerDto">Registration data</param>
+        /// <returns>Authentication response with JWT token</returns>
+        /// <response code="200">Returns the authentication response with token</response>
+        /// <response code="400">If the registration data is invalid</response>
+        /// <response code="401">If user is not authenticated</response>
+        /// <response code="403">If user is not authorized as Employee</response>
         [HttpPost("register")]
-        [Authorize(Roles = "Employee")] // only existing worker can register new one
+        [Authorize(Roles = "Employee")]
         public ActionResult<AuthResponseDto> Register([FromBody] RegisterEmployeeDto registerDto)
         {
             ValidationResult result = register_validator.Validate(registerDto);

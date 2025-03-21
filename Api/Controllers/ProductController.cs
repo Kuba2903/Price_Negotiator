@@ -20,6 +20,16 @@ namespace Api.Controllers
             _validator = validator;
         }
 
+
+        /// <summary>
+        /// Creates a new product (requires Employee role)
+        /// </summary>
+        /// <param name="productDto">Product data</param>
+        /// <returns>Newly created product</returns>
+        /// <response code="201">Returns the newly created product</response>
+        /// <response code="400">If the product data is invalid</response>
+        /// <response code="401">If user is not authenticated</response>
+        /// <response code="403">If user is not authorized as Employee</response>
         [HttpPost]
         [Authorize(Roles = "Employee")]
         public async Task<ActionResult<Product>> CreateProduct(CreateProductDTO productDto)
@@ -36,6 +46,14 @@ namespace Api.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Retrieves a specific product by id
+        /// </summary>
+        /// <param name="id">The ID of the product</param>
+        /// <returns>The requested product</returns>
+        /// <response code="200">Returns the requested product</response>
+        /// <response code="404">If the product is not found</response>
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
@@ -47,6 +65,12 @@ namespace Api.Controllers
                 return NotFound();
         }
 
+
+        /// <summary>
+        /// Retrieves all products
+        /// </summary>
+        /// <returns>List of all products</returns>
+        /// <response code="200">Returns all products</response>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetAllProducts()
         {
